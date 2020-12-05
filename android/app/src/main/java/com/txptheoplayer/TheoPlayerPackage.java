@@ -15,14 +15,13 @@ public class TheoPlayerPackage implements ReactPackage {
     @Override
     public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
         return Arrays.<NativeModule>asList(
-                new TheoPlayerViewModule(reactContext, theoPlayerViewManager)
+                new TheoPlayerViewModule(reactContext, theoPlayerViewManager),
+                new ReactNativeEventEmitterHelper(reactContext, theoPlayerViewManager)
         );
     }
 
     @Override
     public List<ViewManager> createViewManagers(ReactApplicationContext reactContext) {
-        return Collections.<ViewManager>singletonList(
-                theoPlayerViewManager
-        );
+        return Collections.<ViewManager>singletonList(theoPlayerViewManager);
     }
 }

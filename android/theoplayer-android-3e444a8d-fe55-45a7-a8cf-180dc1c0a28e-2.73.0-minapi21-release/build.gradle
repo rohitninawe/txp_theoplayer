@@ -1,2 +1,0 @@
-configurations.maybeCreate("default")
-artifacts.add("default", file('theoplayer-android-3e444a8d-fe55-45a7-a8cf-180dc1c0a28e-2.73.0-minapi21-release.aar'))

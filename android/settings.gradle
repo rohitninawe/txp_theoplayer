@@ -1,6 +1,4 @@
-include ':theoplayer-android-3e444a8d-fe55-45a7-a8cf-180dc1c0a28e-2.73.0-minapi21-release'
-include ':theoplayer-android-3e444a8d-fe55-45a7-a8cf-180dc1c0a28e-2.73.0-minapi21-release'
-include ':theoplayer-android-3e444a8d-fe55-45a7-a8cf-180dc1c0a28e-2.73.0-minapi21-release'
+include ':theoplayer-android-0dbf7b3c-bfc4-4519-ac32-86b597a589c1-2.78.0-minapi21-release'
 rootProject.name = 'txptheoplayer'
 apply from: file("../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesSettingsGradle(settings)
 include ':app'

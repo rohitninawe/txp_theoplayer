@@ -3,12 +3,19 @@ package com.txptheoplayer;
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
 import com.google.gson.Gson;
+import com.theoplayer.android.api.player.track.texttrack.TextTrackKind;
 import com.theoplayer.android.api.source.SourceDescription;
 import com.theoplayer.android.api.source.SourceType;
+import com.theoplayer.android.api.source.TextTrackDescription;
 import com.theoplayer.android.api.source.TypedSource;
 import com.theoplayer.android.api.source.addescription.AdDescription;
 import com.theoplayer.android.api.source.addescription.GoogleImaAdDescription;
 import com.theoplayer.android.api.source.addescription.THEOplayerAdDescription;
+import com.theoplayer.android.api.source.drm.DRMConfiguration;
+import com.theoplayer.android.api.source.drm.KeySystemConfiguration;
+import com.theoplayer.android.api.source.drm.preintegration.AxinomDRMConfiguration;
+
+import androidx.annotation.Nullable;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -17,6 +24,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Iterator;
 
 /**
  * Source parsing helper class, because we don't support GSON object deserialization currently
@@ -38,12 +46,46 @@ public class SourceHelper {
                 JSONObject jsonTypedSource = (JSONObject) jsonSources.get(i);
 
                 SourceType sourceType = null;
-                if (jsonTypedSource.getString("type").equals("application/x-mpegurl")) {
-                    sourceType = SourceType.HLSX;
+                
+                if (jsonTypedSource.getString("type").equals("application/dash+xml")) { //application/dash+xml
+                    sourceType = SourceType.DASH;
                 }
+                JSONObject drm = null;
 
-                TypedSource ts = TypedSource.Builder.typedSource().src(jsonTypedSource.getString("src")).type(sourceType).build();
-                typedSources.add(ts);
+
+                if (jsonTypedSource.has("drm")) {
+                    drm = jsonTypedSource.getJSONObject("drm");
+                    String token = drm.getString("token");
+                    String acquisitionURL = drm.getJSONObject("widevine").getString("licenseAcquisitionURL");
+                    DRMConfiguration drmConfiguration = new AxinomDRMConfiguration.Builder(token)
+                            .widevine(
+                                    new KeySystemConfiguration(acquisitionURL)
+                            )
+                            .build();
+
+                    TypedSource ts = TypedSource.Builder.typedSource().src(jsonTypedSource.getString("src"))
+                            .type(sourceType).drm(drmConfiguration).build();
+                    typedSources.add(ts);
+                }
+                else {
+                    TypedSource ts = TypedSource.Builder.typedSource().src(jsonTypedSource.getString("src")).type(sourceType).build();
+                    typedSources.add(ts);
+                }
+            }
+
+            //testTracks
+            JSONArray jsonTestTrack = jsonSourceObject.getJSONArray("textTracks");
+            ArrayList<TextTrackDescription> testTracks = new ArrayList<>();
+            for (int i = 0 ; i < jsonTestTrack.length(); i++) {
+                JSONObject jsonTextTrackObj = (JSONObject) jsonTestTrack.get(i);
+                TextTrackDescription tt = TextTrackDescription.Builder.textTrackDescription()
+                        .src(jsonTextTrackObj.getString("src"))
+                        .srclang(jsonTextTrackObj.getString("srcLang"))
+                        .isDefault(jsonTextTrackObj.getBoolean("default"))
+                        .kind(TextTrackKind.METADATA)
+                        .label(jsonTextTrackObj.getString("label"))
+                        .build();
+                testTracks.add(tt);
             }
 
             //poster
@@ -69,7 +111,12 @@ public class SourceHelper {
                     }
                 }
             }
-            return SourceDescription.Builder.sourceDescription(typedSources.toArray(new TypedSource[]{})).poster(poster).ads(ads.toArray(new AdDescription[]{})).build();
+            return SourceDescription.Builder
+                    .sourceDescription(typedSources.toArray(new TypedSource[]{}))
+                    .textTracks(testTracks.toArray(new TextTrackDescription[]{}))
+                    .poster(poster)
+                    .ads(ads.toArray(new AdDescription[]{}))
+                    .build();
         } catch (JSONException e) {
             e.printStackTrace();
         }
