@@ -8,8 +8,16 @@ import { SafeAreaInsetsContext } from 'react-native-safe-area-context';
 
 export default class TheoPlayerViewScreen extends React.Component {
     componentDidMount(){
-        Orientation.lockToLandscape()  
+        // Orientation.lockToLandscape()  
+        this.toggleFullscreen()
     }
+    toggleFullscreen = () => {
+        // Only turn on fullscreen, all fullscreen logic is managed by native fullscreen
+        NativeModules.THEOplayerViewManager.fullscreenOn();
+        // if (Platform.OS === 'android') {
+        //   this.setState({isFullscreen: true})
+        // }
+      }
     render() {
          /*
     Problem on android fullscreen change with theoplayer scaling when ScrollView component is set
@@ -62,7 +70,7 @@ export default class TheoPlayerViewScreen extends React.Component {
                                     "src": "https://travelxp.s.llnwi.net/5ef1b82f46c9074616123027/subtitle/4K_Travelxp_Screener.vtt",
                                     "srcLang": "English",
                                     "default": true,
-                                    "kind": '.subtitles',
+                                    "kind": 'subtitles',
                                     "label": "ENG"
                                   }]
                             }
@@ -91,6 +99,5 @@ const styles = StyleSheet.create({
 
     player: {
         backgroundColor: "black",
-        aspectRatio: 1.7,
     },
 });

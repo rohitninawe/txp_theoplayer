@@ -1,5 +1,6 @@
 package com.txptheoplayer;
 
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -11,6 +12,7 @@ import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.common.MapBuilder;
+import com.facebook.react.modules.core.DeviceEventManagerModule;
 import com.facebook.react.uimanager.SimpleViewManager;
 import com.facebook.react.uimanager.ThemedReactContext;
 import com.facebook.react.uimanager.annotations.ReactProp;
@@ -23,6 +25,7 @@ import com.theoplayer.android.api.event.player.DestroyEvent;
 import com.theoplayer.android.api.event.player.PauseEvent;
 import com.theoplayer.android.api.event.player.PlayEvent;
 import com.theoplayer.android.api.event.player.PlayerEventTypes;
+import com.theoplayer.android.api.event.player.PresentationModeChange;
 import com.theoplayer.android.api.event.player.SeekedEvent;
 import com.theoplayer.android.api.source.SourceDescription;
 
@@ -42,7 +45,8 @@ public class TheoPlayerViewManager extends SimpleViewManager<THEOplayerView> imp
         onSeek("onSeekEventInternal", "onSeek"),
         onPlay("onPlayEventInternal", "onPlay"),
         onPause("onPauseEventInternal", "onPause"),
-        onDestroy("onDestroyEventInternal", "onDestroy");
+        onDestroy("onDestroyEventInternal", "onDestroy"),
+        onPresentationModeChange("onPresentationModeChangeEventInternal", "onPresentationModeChange");
 
         String internalEvent;
         String globalEvent;
@@ -126,6 +130,34 @@ public class TheoPlayerViewManager extends SimpleViewManager<THEOplayerView> imp
             }
         });
 
+
+        playerView.getPlayer().addEventListener(PlayerEventTypes.PRESENTATIONMODECHANGE, new EventListener<PresentationModeChange>() {
+            @Override
+            public void handleEvent(final PresentationModeChange presentationModeChangeEvent) {
+                DisplayMetrics displayMetrics = new DisplayMetrics();
+                reactContext.getCurrentActivity().getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+                // Orientation detection
+                int orientation = reactContext.getResources().getConfiguration().orientation;
+
+                if(playerView.getFullScreenManager().isFullScreen()) {
+                    /*
+                        If needed set additional functionality when fullscreen is on, examples below
+                    */
+                    //playerView.getPlayer().pause();
+                    //playerView.getPlayer().play();
+                } else {
+                    /*
+                        If needed set additional functionality when fullscreen is on, examples below
+                    */
+                    //playerView.getPlayer().pause();
+                    //playerView.getPlayer().play();
+                }
+
+                reactContext.getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
+                        .emit(InternalAndGlobalEventPair.onPresentationModeChange.internalEvent, playerView.getFullScreenManager().isFullScreen());
+            }
+        });
+
         playerView.getPlayer().addEventListener(PlayerEventTypes.DESTROY, new EventListener<DestroyEvent>() {
             @Override
             public void handleEvent(final DestroyEvent destroyEvent) {
@@ -180,6 +212,11 @@ public class TheoPlayerViewManager extends SimpleViewManager<THEOplayerView> imp
                         MapBuilder.of(
                                 "phasedRegistrationNames",
                                 MapBuilder.of("bubbled", InternalAndGlobalEventPair.onDestroy.globalEvent)))
+                .put(
+                        InternalAndGlobalEventPair.onPresentationModeChange.internalEvent,
+                        MapBuilder.of(
+                                "phasedRegistrationNames",
+                                MapBuilder.of("bubbled", InternalAndGlobalEventPair.onPresentationModeChange.globalEvent)))
                 .build();
     }
 

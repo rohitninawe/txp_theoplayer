@@ -82,7 +82,7 @@ public class SourceHelper {
                         .src(jsonTextTrackObj.getString("src"))
                         .srclang(jsonTextTrackObj.getString("srcLang"))
                         .isDefault(jsonTextTrackObj.getBoolean("default"))
-                        .kind(TextTrackKind.METADATA)
+                        .kind(jsonTextTrackObj.getString("kind").equals("metadata") ? TextTrackKind.METADATA : TextTrackKind.SUBTITLES)
                         .label(jsonTextTrackObj.getString("label"))
                         .build();
                 testTracks.add(tt);
