@@ -27,9 +27,14 @@
 		463FD93F24B755C4002C78F8 /* THEOplayerViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463FD93D24B755C4002C78F8 /* THEOplayerViewManager.swift */; };
 		463FD94124B755F9002C78F8 /* THEOplayerView+Convert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463FD94024B755F9002C78F8 /* THEOplayerView+Convert.swift */; };
 		463FD94224B755F9002C78F8 /* THEOplayerView+Convert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463FD94024B755F9002C78F8 /* THEOplayerView+Convert.swift */; };
-		463FD94424B76511002C78F8 /* THEOplayerSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 463FD94324B76511002C78F8 /* THEOplayerSDK.framework */; };
-		463FD94524B76511002C78F8 /* THEOplayerSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 463FD94324B76511002C78F8 /* THEOplayerSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		8B3B401D25945AF500961755 /* THEOplayerSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B3B401C25945AF500961755 /* THEOplayerSDK.framework */; };
+		8B3B401E25945AF500961755 /* THEOplayerSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8B3B401C25945AF500961755 /* THEOplayerSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8B3B40532594670500961755 /* EventEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3B40522594670500961755 /* EventEmitter.swift */; };
+		8B3B40582594674800961755 /* theoplayercss.css in Resources */ = {isa = PBXBuildFile; fileRef = 8B3B40572594674800961755 /* theoplayercss.css */; };
+		8B3B405D2594676300961755 /* theoplayerjs.js in Resources */ = {isa = PBXBuildFile; fileRef = 8B3B405C2594676300961755 /* theoplayerjs.js */; };
+		8B3B40622594679200961755 /* ReactNativeEventEmitter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B3B40612594679200961755 /* ReactNativeEventEmitter.m */; };
+		8B3B4067259467B700961755 /* ReactNativeEventEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3B4066259467B700961755 /* ReactNativeEventEmitter.swift */; };
 		9B53CBF8ABA49778AD351C0A /* libPods-txptheoplayer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C049D8CC0AD30A08ADCCD36 /* libPods-txptheoplayer.a */; };
 		BD246EC459AE546F9B3C77E2 /* libPods-txptheoplayer-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E6E9964262611A101FD56CC1 /* libPods-txptheoplayer-tvOSTests.a */; };
 		C40B13DC06EBAF5748810D6D /* libPods-txptheoplayer-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A9262FC8D0E8AA4E9D47BD8 /* libPods-txptheoplayer-tvOS.a */; };
@@ -60,8 +65,8 @@
 			dstSubfolderSpec = 10;
 			files = (
 				4635E7FF24B76EEB00A36AAC /* GoogleInteractiveMediaAds.framework in Embed Frameworks */,
+				8B3B401E25945AF500961755 /* THEOplayerSDK.framework in Embed Frameworks */,
 				4635E7FC24B76C5600A36AAC /* GoogleCast.framework in Embed Frameworks */,
-				463FD94524B76511002C78F8 /* THEOplayerSDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -93,13 +98,18 @@
 		463FD93C24B755C3002C78F8 /* txptheoplayer-tvOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "txptheoplayer-tvOS-Bridging-Header.h"; sourceTree = "<group>"; };
 		463FD93D24B755C4002C78F8 /* THEOplayerViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THEOplayerViewManager.swift; sourceTree = "<group>"; };
 		463FD94024B755F9002C78F8 /* THEOplayerView+Convert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "THEOplayerView+Convert.swift"; sourceTree = "<group>"; };
-		463FD94324B76511002C78F8 /* THEOplayerSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = THEOplayerSDK.framework; sourceTree = "<group>"; };
 		463FD94724B76A35002C78F8 /* THEOplayerViewBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = THEOplayerViewBridge.h; sourceTree = "<group>"; };
 		4687570C8CC5E56AE469CA81 /* Pods-txptheoplayer-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-txptheoplayer-tvOS.release.xcconfig"; path = "Target Support Files/Pods-txptheoplayer-tvOS/Pods-txptheoplayer-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		59D26B1BA8D3FD48B15306DB /* Pods-txptheoplayer-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-txptheoplayer-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-txptheoplayer-tvOSTests/Pods-txptheoplayer-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		6EB20B1AAC4FB0D78167F4D0 /* Pods-txptheoplayer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-txptheoplayer.release.xcconfig"; path = "Target Support Files/Pods-txptheoplayer/Pods-txptheoplayer.release.xcconfig"; sourceTree = "<group>"; };
 		7BE72A436FA26E63A77E3B35 /* libPods-txptheoplayer-txptheoplayerTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-txptheoplayer-txptheoplayerTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = txptheoplayer/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		8B3B401C25945AF500961755 /* THEOplayerSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = THEOplayerSDK.framework; sourceTree = "<group>"; };
+		8B3B40522594670500961755 /* EventEmitter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventEmitter.swift; sourceTree = "<group>"; };
+		8B3B40572594674800961755 /* theoplayercss.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = theoplayercss.css; sourceTree = "<group>"; };
+		8B3B405C2594676300961755 /* theoplayerjs.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = theoplayerjs.js; sourceTree = "<group>"; };
+		8B3B40612594679200961755 /* ReactNativeEventEmitter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReactNativeEventEmitter.m; sourceTree = "<group>"; };
+		8B3B4066259467B700961755 /* ReactNativeEventEmitter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactNativeEventEmitter.swift; sourceTree = "<group>"; };
 		9C049D8CC0AD30A08ADCCD36 /* libPods-txptheoplayer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-txptheoplayer.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E673344722C2D8EEF45F9AAB /* Pods-txptheoplayer-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-txptheoplayer-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-txptheoplayer-tvOSTests/Pods-txptheoplayer-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E6E9964262611A101FD56CC1 /* libPods-txptheoplayer-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-txptheoplayer-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -122,8 +132,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				4635E7FB24B76C5600A36AAC /* GoogleCast.framework in Frameworks */,
-				463FD94424B76511002C78F8 /* THEOplayerSDK.framework in Frameworks */,
 				4635E7FE24B76EEA00A36AAC /* GoogleInteractiveMediaAds.framework in Frameworks */,
+				8B3B401D25945AF500961755 /* THEOplayerSDK.framework in Frameworks */,
 				9B53CBF8ABA49778AD351C0A /* libPods-txptheoplayer.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -181,9 +191,9 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8B3B401C25945AF500961755 /* THEOplayerSDK.framework */,
 				4635E7FD24B76EEA00A36AAC /* GoogleInteractiveMediaAds.framework */,
 				4635E7FA24B76C5600A36AAC /* GoogleCast.framework */,
-				463FD94324B76511002C78F8 /* THEOplayerSDK.framework */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
 				9C049D8CC0AD30A08ADCCD36 /* libPods-txptheoplayer.a */,
@@ -219,6 +229,11 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				8B3B40572594674800961755 /* theoplayercss.css */,
+				8B3B405C2594676300961755 /* theoplayerjs.js */,
+				8B3B40612594679200961755 /* ReactNativeEventEmitter.m */,
+				8B3B4066259467B700961755 /* ReactNativeEventEmitter.swift */,
+				8B3B40522594670500961755 /* EventEmitter.swift */,
 				463FD93624B75427002C78F8 /* THEOplayerView.swift */,
 				463FD93924B75588002C78F8 /* THEOplayerViewBridge.m */,
 				463FD94724B76A35002C78F8 /* THEOplayerViewBridge.h */,
@@ -393,6 +408,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B3B405D2594676300961755 /* theoplayerjs.js in Resources */,
+				8B3B40582594674800961755 /* theoplayercss.css in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 			);
@@ -621,11 +638,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B3B40532594670500961755 /* EventEmitter.swift in Sources */,
 				463FD93E24B755C4002C78F8 /* THEOplayerViewManager.swift in Sources */,
+				8B3B4067259467B700961755 /* ReactNativeEventEmitter.swift in Sources */,
 				463FD93724B75427002C78F8 /* THEOplayerView.swift in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				463FD93A24B75588002C78F8 /* THEOplayerViewBridge.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				8B3B40622594679200961755 /* ReactNativeEventEmitter.m in Sources */,
 				463FD94124B755F9002C78F8 /* THEOplayerView+Convert.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

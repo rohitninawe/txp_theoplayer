@@ -1,8 +1,8 @@
 //
 //  THEOplayerViewManager.swift
-//  txptheoplayer
+//  travelxp_mobile
 //
-//  Created by mwldeveloper on 09/07/20.
+//  Created by developer on 27/10/20.
 //
 
 import Foundation
@@ -22,4 +22,103 @@ import THEOplayerSDK
     override static func requiresMainQueueSetup() -> Bool {
     return true;
     }
+
+@objc
+  func play() {
+    playerView.player.play()
+  }
+
+  @objc
+  func pause() {
+    playerView.player.pause()
+  }
+
+  @objc
+  func stop() {
+    playerView.player.stop()
+  }
+  
+  @objc
+  func fullscreenOn() {
+    DispatchQueue.main.async { [weak self] in
+      self?.playerView.player.presentationMode = .fullscreen
+    }
+  }
+  
+  @objc
+  func fullscreenOff() {
+    DispatchQueue.main.async { [weak self] in
+      self?.playerView.player.presentationMode = .inline
+    }
+  }
+  @objc
+  func destroy(){
+    playerView.player.destroy()
+  }
+  @objc(getCurrentTime:reject:)
+  func getCurrentTime(_ resolve: @escaping RCTPromiseResolveBlock, _ reject: @escaping RCTPromiseRejectBlock) {
+    return playerView.player.requestCurrentTime() { result, error in
+      if error != nil {
+        reject(nil, nil, error!)
+      } else {
+        resolve(result ?? nil)
+      }
+    }
+  }
+
+  @objc
+  func setCurrentTime(_ newValue: NSNumber) {
+    playerView.player.setCurrentTime(newValue.doubleValue)
+  }
+
+  @objc(getDuration:reject:)
+  func getDuration(_ resolve: @escaping RCTPromiseResolveBlock, _ reject: @escaping RCTPromiseRejectBlock) {
+    resolve(playerView.player.duration)
+  }
+
+  @objc(getDurationWithCallback:)
+  func getDurationWithCallback(_ callback : @escaping RCTResponseSenderBlock) {
+    callback([NSNull(), playerView.player.duration ?? 0]);
+  }
+
+  @objc(getPaused:reject:)
+  func getPaused(_ resolve: @escaping RCTPromiseResolveBlock, _ reject: @escaping RCTPromiseRejectBlock) {
+    resolve(playerView.player.paused)
+  }
+
+  @objc(getpreload:reject:)
+  func getPreload(_ resolve: @escaping RCTPromiseResolveBlock, _ reject: @escaping RCTPromiseRejectBlock) {
+    resolve(playerView.player.preload.rawValue)
+  }
+
+  @objc
+  func setPreload(_ newValue: NSString) {
+    if let preload = Preload(rawValue: newValue as String) {
+      playerView.player.setPreload(preload)
+    }
+  }
+
+  @objc(getPresentationMode:reject:)
+  func getPresentationMode(_ resolve: @escaping RCTPromiseResolveBlock, _ reject: @escaping RCTPromiseRejectBlock) {
+    resolve(playerView.player.presentationMode.rawValue)
+  }
+
+  @objc
+  func setPresentationMode(_ newValue: NSString) {
+    if let presentationMode = PresentationMode(rawValue: newValue as String) {
+      playerView.player.presentationMode = presentationMode
+    }
+  }
+
+  @objc
+  func setSource(_ newValue: [String : Any]) {
+    do {
+      let data = try JSONSerialization.data(withJSONObject: newValue)
+      let sourceDescription = try JSONDecoder().decode(SourceDescription.self, from: data)
+      playerView.player.source = sourceDescription
+    } catch {
+      print(error)
+    }
+  }
 }
+

@@ -1,0 +1,65 @@
+
+.custom-icon-forward,
+.custom-icon-rewind {
+    font-family: THEOplayer;
+    font-weight: normal;
+    font-style: normal;
+}
+    
+.custom-icon-forward:before {
+    content: "\f11f";
+    font-size: 2em;
+}
+    
+.custom-icon-rewind:before {
+    content: "\f120";
+    font-size: 2em;
+}
+
+/*--- Custom CSS from here  ---*/
+
+.vjs-progress-holder.vjs-slider.vjs-slider-horizontal{
+  margin-bottom: 15px;
+}
+.theo-primary-color, .vjs-selected {
+  color: #ffffff !important;
+}
+
+/*slider/progress bar */
+.theoplayer-skin .vjs-volume-level,.theoplayer-skin .vjs-play-progress{
+    background: #D9243D !important;
+}
+
+/* .vjs-big-play-button {
+  display: none !important  ;
+}
+.theo-context-menu {
+  display: none;
+}
+.theo-control-bar-shadow {
+  color: transparent !important;
+}
+.theoplayer-skin .theo-menu {
+  position: fixed !important;
+  bottom: 5.6em !important;
+  right: auto !important;
+}
+.vjs-control-bar {
+  position: fixed !important;
+  bottom: 25px !important;
+}
+.vjs-user-active .hoveritems {
+    visibility: visible;
+    opacity: 1;
+}
+.video-js.vjs-16-9 {
+  height: 100% !important;
+}
+.theo-primary-color {
+  color: #d9243d !important;
+}
+.theo-primary-background {
+  color: #fff !important;
+  background-color: #d9243d !important;
+} */
+

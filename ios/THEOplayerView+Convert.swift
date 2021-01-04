@@ -1,12 +1,12 @@
 //
 //  THEOplayerView+Convert.swift
-//  txptheoplayer
+//  travelxp_mobile
 //
-//  Created by mwldeveloper on 09/07/20.
+//  Created by developer on 27/10/20.
 //
 
 import THEOplayerSDK
-    
+
 @objc extension RCTConvert {
     @objc(TypedSource:)
     class func typedSource(_ json: [String:AnyObject]) -> TypedSource? {
@@ -15,7 +15,8 @@ import THEOplayerSDK
     
             if let drm = RCTConvert.nsDictionary(json["drm"]),
                 let fairplay = RCTConvert.nsDictionary(drm["fairplay"]),
-                let integrationType = RCTConvert.nsString(drm["integration"]) {
+                let integrationType = RCTConvert.nsString(drm["integration"]),
+                let token = RCTConvert.nsString(drm["token"]){
                 let licenseAcquisitionURL = RCTConvert.nsString(fairplay["licenseAcquisitionURL"]);
                 let certificateURL = RCTConvert.nsString(fairplay["certificateURL"]);
                 var baseDrm: THEOplayerSDK.DRMConfiguration? = nil
@@ -27,6 +28,9 @@ import THEOplayerSDK
                     break
                     case "uplynk":
                     baseDrm = UplynkDRMConfiguration(licenseAcquisitionURL: licenseAcquisitionURL, certificateURL: certificateURL!)
+                    break
+                    case "axinom":
+                      baseDrm = AxinomDRMConfiguration(licenseAcquisitionURL: licenseAcquisitionURL!, certificateURL: certificateURL!, token: token)
                     break
                     default:
                     break
@@ -46,26 +50,6 @@ import THEOplayerSDK
     class func typedSourceArray(_ json: [AnyObject]) -> [TypedSource]? {
         let sources = RCTConvertArrayValue(#selector(typedSource), json)
             .compactMap { $0 as? TypedSource }
-        return sources.count > 0 ? sources : nil
-    }
-    
-    @objc(AdDescription:)
-    class func adDescription(_ json: [String:AnyObject]) -> THEOAdDescription? {
-        if let src = RCTConvert.nsString(json["sources"]) {
-            return THEOAdDescription(
-                src: src,
-                timeOffset: RCTConvert.nsString(json["timeOffset"]),
-                skipOffset: RCTConvert.nsString(json["skipOffset"])
-            )
-        } else {
-            return nil
-        }
-    }
-    
-    @objc(AdDescriptionArray:)
-    class func adDescriptionArray(_ json: [AnyObject]) -> [THEOAdDescription]? {
-        let sources = RCTConvertArrayValue(#selector(adDescription), json)
-            .compactMap { $0 as? THEOAdDescription }
         return sources.count > 0 ? sources : nil
     }
     
@@ -93,20 +77,19 @@ import THEOplayerSDK
             .compactMap { $0 as? TextTrackDescription }
         return sources.count > 0 ? sources : nil
     }
-    
-    @objc(SourceDescription:)
-    class func sourceDescription(_ json: [String:AnyObject]) -> SourceDescription? {
-        if let sources = (json["sources"] as? [AnyObject]).flatMap(RCTConvert.typedSourceArray) {
-            return SourceDescription(
-                sources: sources,
-                ads: (json["ads"] as? [AnyObject]).flatMap(RCTConvert.adDescriptionArray),
-                textTracks: (json["textTracks"] as? [AnyObject]).flatMap(RCTConvert.textTrackArray),
-                poster: RCTConvert.nsString(json["poster"]),
-                analytics: nil,
-                metadata: nil
-            )
-        } else {
-            return nil
-        }
-    }
+  @objc(SourceDescription:)
+  class func sourceDescription(_ json: [String:AnyObject]) -> SourceDescription? {
+      if let sources = (json["sources"] as? [AnyObject]).flatMap(RCTConvert.typedSourceArray) {
+          return SourceDescription(
+              sources: sources,
+              textTracks: (json["textTracks"] as? [AnyObject]).flatMap(RCTConvert.textTrackArray),
+              poster: RCTConvert.nsString(json["poster"]),
+              analytics: nil,
+              metadata: nil
+          )
+      } else {
+          return nil
+      }
+  }
+
 }

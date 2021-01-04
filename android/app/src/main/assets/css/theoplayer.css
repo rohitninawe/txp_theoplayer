@@ -1,19 +1,38 @@
 
-.custom-icon-forward,
 .custom-icon-rewind {
     font-family: THEOplayer;
     font-weight: normal;
     font-style: normal;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.custom-icon-forward {
+  font-family: THEOplayer;
+  font-weight: normal;
+  font-style: normal;
+  position: fixed;
+  top: 0;
+  right: 0;
 }
     
 .custom-icon-forward:before {
-    content: "\f11f";
-    font-size: 2em;
+    content: "\27F3";
+    font-size: 7em;
+    padding: 75% 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
     
 .custom-icon-rewind:before {
-    content: "\f120";
-    font-size: 2em;
+    content: "\27F2";
+    font-size: 7em;
+    padding: 75% 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /*--- Custom CSS from here  ---*/
@@ -21,6 +40,26 @@
 .vjs-progress-holder.vjs-slider.vjs-slider-horizontal{
   margin-bottom: 15px;
 }
+
+/*-- fullscreen icon --*/
+.theoplayer-skin .vjs-fullscreen-control{
+  display: none !important;
+}
+/*-- preview thumbnail --*/
+/* .vjs-user-active .theoplayer-chaptertitle.theoplayer-chapter-hovering{
+  opacity: 0 !important;
+} */
+/* canvas.theo-time-tooltip-thumbnail{
+  display: none;
+} */
+
+.theo-primary-background, .theo-social .theo-social-container .theo-social-label, .theoplayer-skin .theo-menu-header, .theoplayer-skin .theo-settings-control-label-hd {
+  background: black !important;
+}
+.theoplayer-skin .theo-menu-header, .theoplayer-skin .theo-menu-item {
+  color: white !important;
+}
+
 .theo-primary-color, .vjs-selected {
   color: #ffffff !important;
 }
@@ -62,3 +101,98 @@
   color: #fff !important;
   background-color: #d9243d !important;
 } */
+
+
+/*-- subtitle selection --*/
+li.theo-menu-item.vjs-menu-item.theo-text-track-menu-item.vjs-selected::after {
+  content: "\2713";
+}
+.theo-text-track-menu-item-toggle {
+  visibility: hidden;
+}
+.theoplayer-skin .theo-menu .theo-menu-item.vjs-selected, .theoplayer-skin .theo-menu .theo-menu-item.vjs-selected:focus, .theoplayer-skin .theo-menu .theo-menu-item.vjs-selected:hover {
+  color: white;
+  font-weight: bold;
+}
+/*-- subtitle selection --*/
+
+
+/*-- audio design --*/
+.theoplayer-skin .theo-menu .theo-menu-item {
+  text-align: left!important;
+  justify-content: space-between!important;
+  display: flex!important;
+}
+.theoplayer-skin .theo-menu .theo-menu-item.vjs-selected::after {
+  content: "\2713";
+}
+/* .theoplayer-skin .theo-menu .theo-menu-item::after {
+  content: "\2713";
+} */
+/*-- audio design --*/
+
+
+/*-- thumbnail preview --*/
+.theoplayer-skin.theo-mobile .vjs-progress-control .vjs-mouse-display {
+  visibility: hidden!important;
+  opacity: 0!important;
+}
+.theoplayer-skin.theo-mobile.vjs-scrubbing .vjs-progress-control .vjs-progress-holder .vjs-mouse-display {
+  visibility: visible!important;
+  opacity: 1!important;
+}
+/*-- thumbnail preview --*/
+
+
+/*-- video time --*/
+.theoplayer-skin .vjs-current-time, .theoplayer-skin .vjs-time-divider, .theoplayer-skin .vjs-duration {
+  display: block!important;
+}
+.theoplayer-skin .vjs-time-divider{
+  display: none !important;
+}
+/*-- video time --*/
+
+
+/*-- hide setting icon --*/
+button.vjs-icon-cog.theo-settings-control-button.theo-controlbar-button.vjs-menu-button.vjs-menu-button-popup.vjs-control.vjs-button {
+  display: none!important;
+}
+/*-- hide setting icon --*/
+
+
+/*-- big button --*/
+.vjs-big-play-button {
+  display: none!important;
+}
+/*-- big button --*/
+
+
+/*-- center control bar and play pause --*/
+.theoplayer-skin .vjs-control-bar.custom-center-controlbar {
+  top: 50%;
+  transform: translate(0, -50%);
+  font-size: 3em;
+  height: 3em;
+  justify-content: center;
+  visibility: hidden;
+}
+
+.theoplayer-skin .vjs-control-bar.custom-center-controlbar .theo-control-bar-shadow {
+  display: none;
+}
+
+.theoplayer-skin .vjs-control-bar.custom-center-controlbar .theo-button-tooltip {
+  top: 3.3em;
+  bottom: auto;
+}
+
+.theoplayer-skin .vjs-control-bar.custom-center-controlbar .vjs-button {
+  visibility: visible;
+  margin: 0 0.5em;
+}
+
+.theoplayer-skin.vjs-user-inactive.vjs-playing .vjs-control-bar .vjs-button {
+  pointer-events: none;
+}
+/*-- center control bar and play pause --*/

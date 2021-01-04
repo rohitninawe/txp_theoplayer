@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dimensions, NativeModules, StyleSheet, View, Platform, ScrollView, StatusBar } from 'react-native';
+import { Dimensions, NativeModules, StyleSheet, View, Platform, ScrollView, StatusBar, TouchableOpacity, TouchableWithoutFeedback, Text, Alert } from 'react-native';
 import THEOplayerView from './THEOplayerView'
 import Orientation from 'react-native-orientation-locker';
 import { SafeAreaInsetsContext } from 'react-native-safe-area-context';
@@ -7,9 +7,16 @@ import { SafeAreaInsetsContext } from 'react-native-safe-area-context';
 
 
 export default class TheoPlayerViewScreen extends React.Component {
-    componentDidMount(){
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            landscape: false
+        }
+    }
+
+    componentDidMount() {
         // Orientation.lockToLandscape()  
-        this.toggleFullscreen()
     }
     toggleFullscreen = () => {
         // Only turn on fullscreen, all fullscreen logic is managed by native fullscreen
@@ -17,11 +24,23 @@ export default class TheoPlayerViewScreen extends React.Component {
         // if (Platform.OS === 'android') {
         //   this.setState({isFullscreen: true})
         // }
-      }
+        this.setState({
+            landscape: true
+        })
+    }
+    onTouch = (e) => {
+        console.log('touched')
+        Alert("Hello")
+    }
+    onPhaseTouch = (phase) => {
+        console.log(phase)
+    }
+
     render() {
-         /*
-    Problem on android fullscreen change with theoplayer scaling when ScrollView component is set
-            */
+        // !this.state.landscape && this.toggleFullscreen()
+        /*
+   Problem on android fullscreen change with theoplayer scaling when ScrollView component is set
+           */
         let BaseComponent = View;
 
         let width = Math.floor(Dimensions.get('window').width);
@@ -41,45 +60,54 @@ export default class TheoPlayerViewScreen extends React.Component {
             BaseComponent = View;
         }
         return (
-            <SafeAreaInsetsContext.Consumer>
-            {insets =>
-              <View style={styles.container, { marginTop: 0}} >
-                <StatusBar barStyle="dark-content" hidden={true} backgroundColor={'black'} />
-            <BaseComponent style={[styles.containerBase,{ marginTop: 0}]}>
+            <BaseComponent style={[styles.containerBase]}>
 
-                    <THEOplayerView
-                       style={[playerStyle, { width: width, height: height }]}
-                        fullscreenOrientationCoupling={true}
-                        autoplay={true}
-                        source={
+                <THEOplayerView
+                    style={[playerStyle, { width: width, height: height }]}
+                    fullscreenOrientationCoupling={true}
+                    autoplay={true}
+                    source={
+                        {
+                            sources: [{
+                                type: 'application/x-mpegurl',
+                                src: 'https://cdn.theoplayer.com/video/elephants-dream/playlist.m3u8', //https://travelxp.s.llnwi.net/5ef1b82f46c9074616123027/v4/manifest_hd.mpd
+                                // drm: drmConfiguration
+                            }],
+                            poster: 'https://cdn.theoplayer.com/video/sintel/poster.jpg',
+                            "textTracks": [{
+                                "src": "https://d22iam2jzs2cqx.cloudfront.net/5ef1b82f46c9074616123027/v4/sprites/sprite.vtt",
+                                "srcLang": "en",
+                                "default": true,
+                                "kind": "metadata",
+                                "label": "thumbnails"
+                            },
                             {
-                                sources: [{
-                                    type: 'application/dash+xml', //application/x-mpegurl
-                                    src: 'https://travelxp.s.llnwi.net/5ef1b82f46c9074616123027/v3/manifest_dash.mpd', //https://travelxp.s.llnwi.net/5ef1b82f46c9074616123027/v4/manifest_hd.mpd
-                                    // drm: drmConfiguration
-                                  }],
-                                  poster: 'https://cdn.theoplayer.com/video/sintel/poster.jpg',
-                                  "textTracks": [{
-                                    "src": "https://d22iam2jzs2cqx.cloudfront.net/5ef1b82f46c9074616123027/v4/sprites/sprite.vtt",
-                                    "srcLang": "en",
-                                    "default": true,
-                                    "kind": "metadata",
-                                    "label": "thumbnails"
-                                  },
-                                  {
-                                    "src": "https://travelxp.s.llnwi.net/5ef1b82f46c9074616123027/subtitle/4K_Travelxp_Screener.vtt",
-                                    "srcLang": "English",
-                                    "default": true,
-                                    "kind": 'subtitles',
-                                    "label": "ENG"
-                                  }]
-                            }
-
+                                "src": "https://travelxp.s.llnwi.net/5ef1b82f46c9074616123027/subtitle/4K_Travelxp_Screener.vtt",
+                                "srcLang": "English",
+                                "default": true,
+                                "kind": 'subtitles',
+                                "label": "English"
+                            },
+                            {
+                                "src": "//",
+                                "srcLang": "en",
+                                "default": false,
+                                "kind": 'subtitles',
+                                "label": "No Subtitle"
+                            }]
                         }
-                    />
+                    }
+                />
+
+                <Text style={{
+                    display: "flex",
+                    position: "absolute",
+                    top: 10,
+                    left: 10,
+                    zIndex: 2
+                }}>Big Buck Bunny</Text>
+
             </BaseComponent>
-            </View>}
-      </SafeAreaInsetsContext.Consumer>
         );
     }
 
@@ -94,10 +122,28 @@ const styles = StyleSheet.create({
     },
 
     container: {
-        flex: 1,
+        flex: 1
     },
 
     player: {
         backgroundColor: "black",
+        flex: 1
     },
+    phase: {
+        width: Math.floor(Dimensions.get('window').width) / 3,
+        borderWidth: 2,
+        borderStyle: "solid",
+        borderColor: "black",
+        height: 40,
+    },
+    ui: {
+        position: 'absolute',
+        top: 50,
+        backgroundColor: "skyblue",
+        // flex: 1,
+        // width: '100%',
+        // height: '100%',
+        zIndex: 1,
+        flex: 1
+    }
 });

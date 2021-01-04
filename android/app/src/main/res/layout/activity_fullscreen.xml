@@ -16,7 +16,7 @@
             android:layout_margin="12dp">
 
 
-
+<!-- 
             <TextView
                 android:id="@+id/progressText"
                 android:layout_width="wrap_content"
@@ -27,7 +27,7 @@
                 android:gravity="center"
                 android:text="00:00"
                 android:textColor="#FFFFFF"
-                android:textSize="18sp" />
+                android:textSize="18sp" /> -->
 
 
         </RelativeLayout>

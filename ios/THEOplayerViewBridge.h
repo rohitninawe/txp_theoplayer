@@ -1,8 +1,8 @@
 //
 //  THEOplayerViewBridge.h
-//  txptheoplayer
+//  travelxp_mobile
 //
-//  Created by mwldeveloper on 09/07/20.
+//  Created by developer on 27/10/20.
 //
 
 #ifndef THEOplayerViewBridge_h
