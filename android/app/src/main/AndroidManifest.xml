@@ -23,12 +23,17 @@
       </activity>
       <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
 
-        <activity
+        <!-- <activity
             android:name=".CustomTheoFullScreen"
-            android:configChanges="orientation|screenSize" />
-      <meta-data
+            android:configChanges="orientation|screenSize" /> -->
+
+            <!-- <activity
+        android:name="com.theoplayer.android.api.fullscreen.FullScreenActivity"
+        android:screenOrientation="landscape" /> -->
+        
+      <!-- <meta-data
             android:name="com.google.android.gms.cast.framework.OPTIONS_PROVIDER_CLASS_NAME"
-            android:value="com.theoplayer.android.api.cast.chromecast.DefaultCastOptionsProvider"/>
+            android:value="com.theoplayer.android.api.cast.chromecast.DefaultCastOptionsProvider"/> -->
     </application>
 
 </manifest>

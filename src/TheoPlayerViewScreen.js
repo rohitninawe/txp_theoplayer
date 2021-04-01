@@ -3,20 +3,63 @@ import { Dimensions, NativeModules, StyleSheet, View, Platform, ScrollView, Stat
 import THEOplayerView from './THEOplayerView'
 import Orientation from 'react-native-orientation-locker';
 import { SafeAreaInsetsContext } from 'react-native-safe-area-context';
+import TheoEventEmitter from './TheoEventEmitter';
 
 
+const theoEventEmitter = new TheoEventEmitter();
 
 export default class TheoPlayerViewScreen extends React.Component {
     constructor(props) {
         super(props)
+        this.listeners = {}; // Declarate listeners
 
         this.state = {
-            landscape: false
+            landscape: false,
+            currentTime: undefined
         }
     }
 
     componentDidMount() {
+        if (!this.listeners['playing']) {
+            this.listeners['playing'] = theoEventEmitter.addListener(
+                'playing',
+                (event) => {
+                    console.log('playing')
+                }
+            );
+        }
+        if (!this.listeners['timeupdate']) {
+            this.listeners['timeupdate'] = theoEventEmitter.addListener(
+                'timeupdate',
+                (event) => {
+                    console.log("timeupdate", event);
+                    this.setState({
+                        currentTime: event.currentTime
+                    })
+                }
+            );
+        }
+        if (!this.listeners['presentationmodechange']) {
+            this.listeners['presentationmodechange'] = theoEventEmitter.addListener(
+                'presentationmodechange',
+                (event) => {
+                    console.log('presentationmodechange', event)
+                }
+            );
+        }
         // Orientation.lockToLandscape()  
+    }
+    componentWillUnmount() {
+
+        console.log('event unmount')
+
+        // Remove all js listeners
+        Object.keys(this.listeners).forEach(key => {
+            this.listeners[key].remove();
+        });
+        // Remove all andoird event emmiter helper listeners
+        // theoEventEmitter.removeListeners();
+        NativeModules.THEOplayerViewManager.stop();
     }
     toggleFullscreen = () => {
         // Only turn on fullscreen, all fullscreen logic is managed by native fullscreen
@@ -27,13 +70,6 @@ export default class TheoPlayerViewScreen extends React.Component {
         this.setState({
             landscape: true
         })
-    }
-    onTouch = (e) => {
-        console.log('touched')
-        Alert("Hello")
-    }
-    onPhaseTouch = (phase) => {
-        console.log(phase)
     }
 
     render() {
@@ -59,21 +95,23 @@ export default class TheoPlayerViewScreen extends React.Component {
             // playerStyle.width = Math.min(width, height) + 1;
             BaseComponent = View;
         }
+
         return (
             <BaseComponent style={[styles.containerBase]}>
 
                 <THEOplayerView
-                    style={[playerStyle, { width: width, height: height }]}
+                    style={[playerStyle
+                        , { width: width }
+                    ]}
                     fullscreenOrientationCoupling={true}
                     autoplay={true}
                     source={
                         {
                             sources: [{
-                                type: 'application/x-mpegurl',
-                                src: 'https://cdn.theoplayer.com/video/elephants-dream/playlist.m3u8', //https://travelxp.s.llnwi.net/5ef1b82f46c9074616123027/v4/manifest_hd.mpd
-                                // drm: drmConfiguration
+                                type: 'application/dash+xml',
+                                src: 'https://travelxp.s.llnwi.net/watch1/5f1685c78281ec7f46d0f358/manifest_v2.mpd',
                             }],
-                            poster: 'https://cdn.theoplayer.com/video/sintel/poster.jpg',
+                            poster: 'https://cdn.theoplayer.com/video/big_buck_bunny/poster.jpg',
                             "textTracks": [{
                                 "src": "https://d22iam2jzs2cqx.cloudfront.net/5ef1b82f46c9074616123027/v4/sprites/sprite.vtt",
                                 "srcLang": "en",
@@ -107,13 +145,14 @@ export default class TheoPlayerViewScreen extends React.Component {
                     zIndex: 2
                 }}>Big Buck Bunny</Text>
 
+                <View>
+                    <Text>Current Time: {this.state.currentTime}</Text>
+                </View>
+
             </BaseComponent>
         );
     }
 
-    componentWillUnmount() {
-        NativeModules.THEOplayerViewManager.stop();
-    }
 }
 
 const styles = StyleSheet.create({
@@ -126,8 +165,9 @@ const styles = StyleSheet.create({
     },
 
     player: {
-        backgroundColor: "black",
-        flex: 1
+        // backgroundColor: "black",
+        // flex: 1,
+        aspectRatio: 16 / 9,
     },
     phase: {
         width: Math.floor(Dimensions.get('window').width) / 3,

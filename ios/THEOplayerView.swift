@@ -54,7 +54,8 @@ class THEOplayerView: UIView {
     super.init(frame: .zero)
     // Add as subview
     player.addAsSubview(of: self)
-      self.player.presentationMode = .inline
+    self.player.presentationMode = .inline
+    self.player.fullscreen.setSupportedInterfaceOrientations(supportedInterfaceOrientations: .landscape)
       
     // added seekListener
     let seekListener = player.addEventListener(type: PlayerEventTypes.SEEKED) { [unowned self] event in

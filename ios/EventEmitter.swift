@@ -54,7 +54,7 @@ class EventEmitter {
           print("Received \(event.type) event at \(event.currentTime)")
           EventEmitter.sharedInstance.dispatch(name: event.type, body: ["currentTime": event.currentTime])
         }
-
+      
       case "durationchange":
         listeners[eventName] = EventEmitter.player.addEventListener(type: PlayerEventTypes.DURATION_CHANGE) { event in
           print("Received \(event.type) event. Duration \(String(describing: event.duration))")
@@ -94,6 +94,12 @@ class EventEmitter {
           listeners[eventName] = EventEmitter.player.addEventListener(type: PlayerEventTypes.SEEKED) { event in
             EventEmitter.sharedInstance.dispatch(name: event.type, body: ["currentTime": event.currentTime])
         }
+          
+        case "presentationmodechange":
+          listeners[eventName] = EventEmitter.player.addEventListener(type: PlayerEventTypes.PRESENTATION_MODE_CHANGE) { event in
+            print("Received \(event.type) event at \(event.presentationMode)")
+            EventEmitter.sharedInstance.dispatch(name: event.type, body: ["currentMode": event.presentationMode])
+          }
 
       default:
       return false
@@ -128,6 +134,9 @@ class EventEmitter {
 
       case "seeked":
         EventEmitter.player.removeEventListener(type: PlayerEventTypes.SEEKED, listener: listener)
+
+      case "presentationmodechange":
+        EventEmitter.player.removeEventListener(type: PlayerEventTypes.PRESENTATION_MODE_CHANGE, listener: listener)
 
       default:
         break

@@ -16,7 +16,7 @@ function init({ player }) {
         // var now = Date.now();
         // var DOUBLE_PRESS_DELAY = 300;
         // if (lastTap && (now - lastTap) < DOUBLE_PRESS_DELAY) {
-          player.currentTime -= 30;
+        player.currentTime -= 10;
         //   showRewind = true;
         //   setTimeout(function () {
         //     showRewind = false
@@ -27,7 +27,7 @@ function init({ player }) {
       },
       buildCSSClass: function () {
         // if (showRewind) {
-          return 'custom-icon-rewind'; // insert all class names here
+        return 'custom-icon-rewind'; // insert all class names here
         // }
         // else{
         //   return 'custom-icon-rewind-light'
@@ -41,10 +41,10 @@ function init({ player }) {
         /* initialize your button */
       },
       handleClick: () => {
-      //   const now = Date.now();
-      //   const DOUBLE_PRESS_DELAY = 300;
-      //   if (lastTap && (now - lastTap) < DOUBLE_PRESS_DELAY) {
-          player.currentTime += 30;
+        //   const now = Date.now();
+        //   const DOUBLE_PRESS_DELAY = 300;
+        //   if (lastTap && (now - lastTap) < DOUBLE_PRESS_DELAY) {
+        player.currentTime += 10;
         //   showRewind = true
         // } else {
         //   lastTap = now;
@@ -60,34 +60,33 @@ function init({ player }) {
 
     controlBar.addChild('ForwardButton', {});
     controlBar.addChild('RewindButton', {});
-  }
 
 
-
-  // Create center controlbar
-var ControlBar = videojs.getComponent('ControlBar');
-var CustomCenterControlBar = videojs.extend(ControlBar, {
-    constructor: function (player, options) {
+    // Create center controlbar
+    var ControlBar = videojs.getComponent('ControlBar');
+    var CustomCenterControlBar = videojs.extend(ControlBar, {
+      constructor: function (player, options) {
         options.children = [];
         ControlBar.call(this, player, options);
         this.addClass('custom-center-controlbar');
-    }
-});
-videojs.registerComponent('CustomCenterControlBar', CustomCenterControlBar);
+      }
+    });
+    videojs.registerComponent('CustomCenterControlBar', CustomCenterControlBar);
 
-var customCenterControlBar = player.ui.addChild('CustomCenterControlBar');
+    var customCenterControlBar = player.ui.addChild('CustomCenterControlBar');
 
-// Create custom big play pause button
-var PlayToggle = videojs.getComponent('playToggle');
-var CustomBigPlayToggle = videojs.extend(PlayToggle, {
-    constructor: function(player, options) {
+    // Create custom big play pause button
+    var PlayToggle = videojs.getComponent('playToggle');
+    var CustomBigPlayToggle = videojs.extend(PlayToggle, {
+      constructor: function (player, options) {
         PlayToggle.call(this, player, options);
         this.addClass('custom-big-play-pause-button');
-    }
-});
-videojs.registerComponent('CustomBigPlayToggle', CustomBigPlayToggle);
+      }
+    });
+    videojs.registerComponent('CustomBigPlayToggle', CustomBigPlayToggle);
 
-// Add custom big play pause toggle to center controlbar
-customCenterControlBar.addChild('CustomBigPlayToggle');
+    // Add custom big play pause toggle to center controlbar
+    customCenterControlBar.addChild('CustomBigPlayToggle');
 
+  }
 }

@@ -192,11 +192,11 @@ dependencies {
 
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
     implementation 'com.google.code.gson:gson:2.8.2'
-    implementation project(path: ':theoplayer-android-0dbf7b3c-bfc4-4519-ac32-86b597a589c1-2.78.0-minapi21-release')
-    
+
     implementation 'com.android.support:appcompat-v7:27.1.1'
     implementation 'com.android.support:mediarouter-v7:27.1.1'
     implementation 'com.google.android.gms:play-services-cast-framework:15.0.1'
+    implementation project(path: ':theoplayer-android-dist-0dbf7b3c-bfc4-4519-ac32-86b597a589c1-2.81.0-minapi21-release')
 
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}") {
       exclude group:'com.facebook.fbjni'

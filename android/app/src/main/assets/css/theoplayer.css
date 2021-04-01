@@ -1,11 +1,11 @@
 
 .custom-icon-rewind {
-    font-family: THEOplayer;
-    font-weight: normal;
-    font-style: normal;
-    position: fixed;
-    top: 0;
-    left: 0;
+  font-family: THEOplayer;
+  font-weight: normal;
+  font-style: normal;
+  position: fixed;
+  top: calc(50% - 3.5em);
+  right: 70%;
 }
 
 .custom-icon-forward {
@@ -13,186 +13,199 @@
   font-weight: normal;
   font-style: normal;
   position: fixed;
-  top: 0;
-  right: 0;
+  top: calc(50% - 3.5em);
+  left: 70%;
 }
-    
+  
 .custom-icon-forward:before {
-    content: "\27F3";
-    font-size: 7em;
-    padding: 75% 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  content: "\27F3";
+  font-size: 5em;
 }
-    
+  
 .custom-icon-rewind:before {
-    content: "\27F2";
-    font-size: 7em;
-    padding: 75% 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  content: "\27F2";
+  font-size: 5em;
 }
 
 /*--- Custom CSS from here  ---*/
 
 .vjs-progress-holder.vjs-slider.vjs-slider-horizontal{
-  margin-bottom: 15px;
+margin-bottom: 15px;
 }
 
 /*-- fullscreen icon --*/
-.theoplayer-skin .vjs-fullscreen-control{
-  display: none !important;
-}
+/* .theoplayer-skin .vjs-fullscreen-control{
+display: none !important;
+} */
+/*-- fullscreen icon --*/
+
 /*-- preview thumbnail --*/
 /* .vjs-user-active .theoplayer-chaptertitle.theoplayer-chapter-hovering{
-  opacity: 0 !important;
+opacity: 0 !important;
 } */
 /* canvas.theo-time-tooltip-thumbnail{
-  display: none;
+display: none;
 } */
 
+.theo-primary-background, .theoplayer-skin .theo-settings-control-label-hd {
+  background-color: #ffc50f !important;
+  color: black !important;
+}
+
 .theo-primary-background, .theo-social .theo-social-container .theo-social-label, .theoplayer-skin .theo-menu-header, .theoplayer-skin .theo-settings-control-label-hd {
-  background: black !important;
+  background-color: transparent !important;
+  font-weight: bold !important;
+  padding-bottom: 10px !important;
+  border-bottom: 1px solid gray !important;    
+  font-size: 16px !important;
 }
 .theoplayer-skin .theo-menu-header, .theoplayer-skin .theo-menu-item {
-  color: white !important;
+color: white !important;
 }
 
 .theo-primary-color, .vjs-selected {
-  color: #ffffff !important;
+color: #ffffff !important;
 }
 
 /*slider/progress bar */
 .theoplayer-skin .vjs-volume-level,.theoplayer-skin .vjs-play-progress{
-    background: #D9243D !important; 
+  background: #D9243D !important; 
 }
 
 /* .vjs-big-play-button {
-  display: none !important  ;
+display: none !important  ;
 }
 .theo-context-menu {
-  display: none;
+display: none;
 }
 .theo-control-bar-shadow {
-  color: transparent !important;
+color: transparent !important;
 }
 .theoplayer-skin .theo-menu {
-  position: fixed !important;
-  bottom: 5.6em !important;
-  right: auto !important;
+position: fixed !important;
+bottom: 5.6em !important;
+right: auto !important;
 }
 .vjs-control-bar {
-  position: fixed !important;
-  bottom: 25px !important;
+position: fixed !important;
+bottom: 25px !important;
 }
 .vjs-user-active .hoveritems {
-    visibility: visible;
-    opacity: 1;
+  visibility: visible;
+  opacity: 1;
 }
 .video-js.vjs-16-9 {
-  height: 100% !important;
+height: 100% !important;
 }
 .theo-primary-color {
-  color: #d9243d !important;
+color: #d9243d !important;
 }
 .theo-primary-background {
-  color: #fff !important;
-  background-color: #d9243d !important;
+color: #fff !important;
+background-color: #d9243d !important;
 } */
 
 
 /*-- subtitle selection --*/
-li.theo-menu-item.vjs-menu-item.theo-text-track-menu-item.vjs-selected::after {
-  content: "\2713";
-}
+/* li.theo-menu-item.vjs-menu-item.theo-text-track-menu-item.vjs-selected::after {
+content: "\2713";
+} */
 .theo-text-track-menu-item-toggle {
-  visibility: hidden;
+visibility: hidden;
 }
 .theoplayer-skin .theo-menu .theo-menu-item.vjs-selected, .theoplayer-skin .theo-menu .theo-menu-item.vjs-selected:focus, .theoplayer-skin .theo-menu .theo-menu-item.vjs-selected:hover {
-  color: white;
-  font-weight: bold;
+color: white !important;
+font-weight: bold !important;
+text-shadow: 2px 2px 6px #070707f5!important;
+background-color: rgba(255,255,255,.2)!important;
 }
 /*-- subtitle selection --*/
 
 
 /*-- audio design --*/
 .theoplayer-skin .theo-menu .theo-menu-item {
-  text-align: left!important;
-  justify-content: space-between!important;
-  display: flex!important;
+/* text-align: left!important; */
+/* justify-content: space-between!important; */
+  width: 33% !important;
+  font-size: 14px !important;
 }
-.theoplayer-skin .theo-menu .theo-menu-item.vjs-selected::after {
-  content: "\2713";
+.vjs-menu-content.theo-menu-content {
+  display: flex !important;
+  flex-wrap: wrap !important;
 }
+.theo-tertiary-background.theo-menu-animation-container {
+  border-radius: 10px !important;
+}
+/* .theoplayer-skin .theo-menu .theo-menu-item.vjs-selected::after {
+content: "\2713";
+} */
 /* .theoplayer-skin .theo-menu .theo-menu-item::after {
-  content: "\2713";
+content: "\2713";
 } */
 /*-- audio design --*/
 
 
 /*-- thumbnail preview --*/
 .theoplayer-skin.theo-mobile .vjs-progress-control .vjs-mouse-display {
-  visibility: hidden!important;
-  opacity: 0!important;
+visibility: hidden!important;
+opacity: 0!important;
 }
 .theoplayer-skin.theo-mobile.vjs-scrubbing .vjs-progress-control .vjs-progress-holder .vjs-mouse-display {
-  visibility: visible!important;
-  opacity: 1!important;
+visibility: visible!important;
+opacity: 1!important;
 }
 /*-- thumbnail preview --*/
 
 
 /*-- video time --*/
 .theoplayer-skin .vjs-current-time, .theoplayer-skin .vjs-time-divider, .theoplayer-skin .vjs-duration {
-  display: block!important;
+display: block!important;
 }
 .theoplayer-skin .vjs-time-divider{
-  display: none !important;
+display: none !important;
 }
 /*-- video time --*/
 
 
 /*-- hide setting icon --*/
 button.vjs-icon-cog.theo-settings-control-button.theo-controlbar-button.vjs-menu-button.vjs-menu-button-popup.vjs-control.vjs-button {
-  display: none!important;
+display: none!important;
 }
 /*-- hide setting icon --*/
 
 
 /*-- big button --*/
 .vjs-big-play-button {
-  display: none!important;
+display: none!important;
 }
 /*-- big button --*/
 
 
 /*-- center control bar and play pause --*/
 .theoplayer-skin .vjs-control-bar.custom-center-controlbar {
-  top: 50%;
-  transform: translate(0, -50%);
-  font-size: 3em;
-  height: 3em;
-  justify-content: center;
-  visibility: hidden;
+top: calc(50%);
+transform: translate(0, -50%);
+font-size: 2.5em;
+height: 2.5em;
+justify-content: center;
+visibility: hidden;
 }
 
 .theoplayer-skin .vjs-control-bar.custom-center-controlbar .theo-control-bar-shadow {
-  display: none;
+display: none;
 }
 
 .theoplayer-skin .vjs-control-bar.custom-center-controlbar .theo-button-tooltip {
-  top: 3.3em;
-  bottom: auto;
+top: 3.3em;
+bottom: auto;
 }
 
 .theoplayer-skin .vjs-control-bar.custom-center-controlbar .vjs-button {
-  visibility: visible;
-  margin: 0 0.5em;
+visibility: visible;
+margin: 0 0.5em;
 }
 
 .theoplayer-skin.vjs-user-inactive.vjs-playing .vjs-control-bar .vjs-button {
-  pointer-events: none;
+pointer-events: none;
 }
 /*-- center control bar and play pause --*/

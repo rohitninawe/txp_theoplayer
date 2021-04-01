@@ -18,8 +18,6 @@
 		2DCD954D1E0B4F2C00145EB5 /* txptheoplayerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* txptheoplayerTests.m */; };
 		4635E7FB24B76C5600A36AAC /* GoogleCast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4635E7FA24B76C5600A36AAC /* GoogleCast.framework */; };
 		4635E7FC24B76C5600A36AAC /* GoogleCast.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4635E7FA24B76C5600A36AAC /* GoogleCast.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		4635E7FE24B76EEA00A36AAC /* GoogleInteractiveMediaAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4635E7FD24B76EEA00A36AAC /* GoogleInteractiveMediaAds.framework */; };
-		4635E7FF24B76EEB00A36AAC /* GoogleInteractiveMediaAds.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4635E7FD24B76EEA00A36AAC /* GoogleInteractiveMediaAds.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		463FD93724B75427002C78F8 /* THEOplayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463FD93624B75427002C78F8 /* THEOplayerView.swift */; };
 		463FD93A24B75588002C78F8 /* THEOplayerViewBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 463FD93924B75588002C78F8 /* THEOplayerViewBridge.m */; };
 		463FD93B24B75588002C78F8 /* THEOplayerViewBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 463FD93924B75588002C78F8 /* THEOplayerViewBridge.m */; };
@@ -64,7 +62,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				4635E7FF24B76EEB00A36AAC /* GoogleInteractiveMediaAds.framework in Embed Frameworks */,
 				8B3B401E25945AF500961755 /* THEOplayerSDK.framework in Embed Frameworks */,
 				4635E7FC24B76C5600A36AAC /* GoogleCast.framework in Embed Frameworks */,
 			);
@@ -132,7 +129,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4635E7FB24B76C5600A36AAC /* GoogleCast.framework in Frameworks */,
-				4635E7FE24B76EEA00A36AAC /* GoogleInteractiveMediaAds.framework in Frameworks */,
 				8B3B401D25945AF500961755 /* THEOplayerSDK.framework in Frameworks */,
 				9B53CBF8ABA49778AD351C0A /* libPods-txptheoplayer.a in Frameworks */,
 			);
@@ -361,6 +357,7 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
+						DevelopmentTeam = 6XRM8VPKS9;
 						LastSwiftMigration = 1150;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
@@ -738,6 +735,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6XRM8VPKS9;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -766,6 +764,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6XRM8VPKS9;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
