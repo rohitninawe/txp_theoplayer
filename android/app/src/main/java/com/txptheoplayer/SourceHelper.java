@@ -1,8 +1,15 @@
 package com.txptheoplayer;
 
+import android.view.View;
+
+import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
 import com.google.gson.Gson;
+import com.npaw.youbora.lib6.plugin.Options;
+import com.npaw.youbora.lib6.plugin.Plugin;
+import com.npaw.youbora.lib6.theoplayer.TheoplayerAdapter;
+import com.theoplayer.android.api.THEOplayerView;
 import com.theoplayer.android.api.player.track.texttrack.TextTrackKind;
 import com.theoplayer.android.api.source.SourceDescription;
 import com.theoplayer.android.api.source.SourceType;
@@ -86,6 +93,27 @@ public class SourceHelper {
                         .label(jsonTextTrackObj.getString("label"))
                         .build();
                 testTracks.add(tt);
+            }
+
+            //analytics
+            JSONArray analyticsArray = jsonSourceObject.optJSONArray("analytics");
+            ArrayList<Options> analytics = new ArrayList<>();
+            if(analyticsArray != null) {
+                Options youboraOptions = new Options();
+                for (int i = 0; i < analyticsArray.length(); i++) {
+                    JSONObject analyticsObj = (JSONObject) analyticsArray.get(i);
+                    youboraOptions.setAccountCode("travelxpdev");
+                    youboraOptions.setUsername(analyticsObj.getString("username"));
+                    youboraOptions.setContentTitle(analyticsObj.getString("content.title"));
+                    youboraOptions.setContentDuration(Double.valueOf(analyticsObj.getString("content.duration")));
+                    youboraOptions.setContentId(analyticsObj.getString("content.id"));
+                    youboraOptions.setContentType(analyticsObj.getString("content.type"));
+                    youboraOptions.setProgram(analyticsObj.getString("content.program"));
+                    youboraOptions.setAppReleaseVersion(analyticsObj.getString("app.releaseVersion"));
+                }
+//                Plugin youboraPlugin = new Plugin(youboraOptions, ReactApplicationContext reactContext);
+//                youboraPlugin.setActivity(TheoPlayerViewManager) // Activity where the player is
+//                youboraPlugin.setAdapter(new TheoplayerAdapter(THEOplayerView));
             }
 
             //poster

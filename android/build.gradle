@@ -33,5 +33,11 @@ allprojects {
         google()
         jcenter()
         maven { url 'https://www.jitpack.io' }
+
+         maven {
+            // Youbora Analytics
+            url  "http://dl.bintray.com/npaw/youbora"
+        }
+
     }
 }
